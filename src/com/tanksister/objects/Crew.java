@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import com.tanksister.util.ImageUtil;
 
 public class Crew {
+
+	/** 乗員基本情報 **/
     // 乗員ID
     private int crewID;
     // 乗員名
@@ -15,6 +17,8 @@ public class Crew {
     private int crewJobID;
     // 階級ID
     private int crewGradeID;
+
+    /** 乗員パラメータ **/
     // 練度1
     private int crewDuration1;
     // 練度2
@@ -135,4 +139,12 @@ public class Crew {
     public void setCrewDuration5(int crewDuration5) {
         this.crewDuration5 = crewDuration5;
     }
+
+	public BufferedImage getCrewImage() {
+		return crewImage;
+	}
+
+	public void setCrewImage(BufferedImage crewImage) {
+		this.crewImage = crewImage;
+	}
 }

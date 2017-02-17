@@ -10,46 +10,31 @@ import com.tanksister.util.ImageUtil;
 public class Unit implements Common {
 
     /** ユニット基本情報 **/
+	/** TODO cfg → UnitDataオブジェクトにロード → 描画時はUnitオブジェクトに呼び出し？ **/
     // ユニットID
     private int unitID;
-    // ユニットタイプ
-    private int unitType;
-    // オブジェクトタイプ
-    private int objectType;
+    // ユニット基本情報
+    private UnitData unitData;
+
     // 所属部隊ID
     private int divisionID;
     // 乗員IDリスト
     private int[] unitCrewIDs;
-    // ユニット名
-    private String unitName;
-    // ユニット説明文ID
-    private String unitDescriptionID;
-
-    /** ユニット詳細情報 TODO 絶対値 + 補正値 **/
     // 士気
     private int unitMorale;
     // 練度
     private int unitDuration;
-    // 攻撃力
-    private int unitAttackPoint;
-    // 前面防御力
-    private int unitFrontArmorPoint;
-    // 側面防御力
-    private int unitSideArmorPoint;
-    // 背面防御力
-    private int unitBackArmorPoint;
-    // 耐久力
-    private int unitHitPoint;
-    // 機動性(移動範囲)
-    private int unitMoveLenght;
 
-    /** ユニット装備情報 **/
     // 装備IDリスト
     // 0:砲身ID 1:前面装甲ID 2:側面装甲ID 3:背面装甲ID 4:エンジンID 5:履帯ID
     private int[] unitModuleIDs;
     // 弾頭IDリスト
     // 0:AP弾頭 1:HE弾頭
     // private int[] unitShellIDs;
+
+    /** ユニットパラメータ(補正値) **/
+    // 0:攻撃力 1:前面防御力 2:側面防御力 3:背面防御力 4:耐久力 5:機動性(移動範囲)
+    private static int[] unitParams;
 
     /** ユニット状態情報 TODO オブジェクト分ける？ **/
     // 座標
@@ -75,46 +60,25 @@ public class Unit implements Common {
     private Map map;
 
     // 最小
-    public Unit(int unitID) {
-        this.unitID = unitID;
+    public Unit(UnitData unitData) {
+        this.unitID = unitData.getUnitID();
     }
 
     // 情報のみ
-    public Unit(int unitID, int unitType, int objectType, int divisionID, int[] unitCrewIDs,
-            String unitName, String unitDescriptionID, int[] unitModuleIDs) {
-        this.unitID = unitID;
-        this.unitType = unitType;
-        this.objectType = objectType;
+    public Unit(UnitData unitData, int divisionID, int[] unitCrewIDs, int[] unitModuleIDs) {
+    	this.unitID = unitData.getUnitID();
         this.divisionID = divisionID;
         this.unitCrewIDs = unitCrewIDs;
-        this.unitName = unitName;
-        this.unitDescriptionID = unitDescriptionID;
         this.unitModuleIDs = unitModuleIDs;
     }
 
     // フル
-    public Unit(int unitID, int unitType, int objectType, int divisionID, int[] unitCrewIDs,
-            String unitName, String unitDescriptionID, int[] unitModuleIDs,
-            int unitMorale, int unitDuration, int unitAttackPoint, int unitHitPoint,
-            int unitFrontArmorPoint, int unitSideArmorPoint, int unitBackArmorPoint, int unitMoveLenght,
-            int x, int y, int direction, int moveType, Map map) {
-        this.unitID = unitID;
-        this.unitType = unitType;
-        this.objectType = objectType;
+    public Unit(UnitData unitData, int divisionID, int[] unitCrewIDs, int[] unitModuleIDs,
+            int unitMorale, int unitDuration, int x, int y, int direction, int moveType, Map map) {
+    	this.unitID = unitData.getUnitID();
         this.divisionID = divisionID;
         this.unitCrewIDs = unitCrewIDs;
-        this.unitName = unitName;
-        this.unitDescriptionID = unitDescriptionID;
         this.unitModuleIDs = unitModuleIDs;
-
-        this.unitMorale = unitMorale;
-        this.unitDuration = unitDuration;
-        this.unitAttackPoint = unitAttackPoint;
-        this.unitHitPoint = unitHitPoint;
-        this.unitFrontArmorPoint = unitFrontArmorPoint;
-        this.unitSideArmorPoint = unitSideArmorPoint;
-        this.unitBackArmorPoint = unitBackArmorPoint;
-        this.unitMoveLenght = unitMoveLenght;
 
         this.x = x;
         this.y = y;
@@ -122,7 +86,6 @@ public class Unit implements Common {
         this.px = x * CS;
         this.py = y * CS;
 
-        this.unitID = unitID;
         this.direction = direction;
         this.moveType = moveType;
         this.map = map;
@@ -137,7 +100,71 @@ public class Unit implements Common {
         threadAnime.start();
     }
 
-    public int getX() {
+    public int getUnitID() {
+        return unitID;
+    }
+
+    public void setUnitID(int unitID) {
+        this.unitID = unitID;
+    }
+
+    public int getUnitMorale() {
+		return unitMorale;
+	}
+
+	public void setUnitMorale(int unitMorale) {
+		this.unitMorale = unitMorale;
+	}
+
+	public int getUnitDuration() {
+		return unitDuration;
+	}
+
+	public void setUnitDuration(int unitDuration) {
+		this.unitDuration = unitDuration;
+	}
+
+	public int getDivisionID() {
+        return divisionID;
+    }
+
+    public void setDivisionID(int divisionID) {
+        this.divisionID = divisionID;
+    }
+
+    public int[] getUnitCrewIDs() {
+        return unitCrewIDs;
+    }
+
+    public void setUnitCrewIDs(int[] unitCrewIDs) {
+        this.unitCrewIDs = unitCrewIDs;
+    }
+
+    public UnitData getUnitParam() {
+		return unitData;
+	}
+
+	public void setUnitParam(UnitData unitParam) {
+		this.unitData = unitParam;
+	}
+
+	public int[] getUnitModuleIDs() {
+        return unitModuleIDs;
+    }
+
+    public void setUnitModuleIDs(int[] unitModuleIDs) {
+        this.unitModuleIDs = unitModuleIDs;
+    }
+
+    public static int[] getUnitParams() {
+		return unitParams;
+	}
+
+	public static void setUnitParams(int[] unitParams) {
+		Unit.unitParams = unitParams;
+	}
+
+	public int getX() {
         return x;
     }
 
@@ -179,138 +206,11 @@ public class Unit implements Common {
         return moveType;
     }
 
-    public int getUnitID() {
-        return unitID;
-    }
-
-    public void setUnitID(int unitID) {
-        this.unitID = unitID;
-    }
-
-    public int getUnitType() {
-        return unitType;
-    }
-
-    public void setUnitType(int unitType) {
-        this.unitType = unitType;
-    }
-
-    public int getObjectType() {
-        return objectType;
-    }
-
-    public void setObjectType(int objectType) {
-        this.objectType = objectType;
-    }
-
-    public int getDivisionID() {
-        return divisionID;
-    }
-
-    public void setDivisionID(int divisionID) {
-        this.divisionID = divisionID;
-    }
-
-    public int[] getUnitCrewIDs() {
-        return unitCrewIDs;
-    }
-
-    public void setUnitCrewIDs(int[] unitCrewIDs) {
-        this.unitCrewIDs = unitCrewIDs;
-    }
-
-    public String getUnitName() {
-        return unitName;
-    }
-
-    public void setUnitName(String unitName) {
-        this.unitName = unitName;
-    }
-
-    public String getUnitDescriptionID() {
-        return unitDescriptionID;
-    }
-
-    public void setUnitDescriptionID(String unitDescriptionID) {
-        this.unitDescriptionID = unitDescriptionID;
-    }
-
-    public int getUnitMorale() {
-        return unitMorale;
-    }
-
-    public void setUnitMorale(int unitMorale) {
-        this.unitMorale = unitMorale;
-    }
-
-    public int getUnitDuration() {
-        return unitDuration;
-    }
-
-    public void setUnitDuration(int unitDuration) {
-        this.unitDuration = unitDuration;
-    }
-
-    public int getUnitAttackPoint() {
-        return unitAttackPoint;
-    }
-
-    public void setUnitAttackPoint(int unitAttackPoint) {
-        this.unitAttackPoint = unitAttackPoint;
-    }
-
-    public int getUnitFrontArmorPoint() {
-        return unitFrontArmorPoint;
-    }
-
-    public void setUnitFrontArmorPoint(int unitFrontArmorPoint) {
-        this.unitFrontArmorPoint = unitFrontArmorPoint;
-    }
-
-    public int getUnitSideArmorPoint() {
-        return unitSideArmorPoint;
-    }
-
-    public void setUnitSideArmorPoint(int unitSideArmorPoint) {
-        this.unitSideArmorPoint = unitSideArmorPoint;
-    }
-
-    public int getUnitBackArmorPoint() {
-        return unitBackArmorPoint;
-    }
-
-    public void setUnitBackArmorPoint(int unitBackArmorPoint) {
-        this.unitBackArmorPoint = unitBackArmorPoint;
-    }
-
-    public int getUnitHitPoint() {
-        return unitHitPoint;
-    }
-
-    public void setUnitHitPoint(int unitHitPoint) {
-        this.unitHitPoint = unitHitPoint;
-    }
-
-    public int getUnitMoveLenght() {
-        return unitMoveLenght;
-    }
-
-    public void setUnitMoveLenght(int unitMoveLenght) {
-        this.unitMoveLenght = unitMoveLenght;
-    }
-
-    public int[] getUnitModuleIDs() {
-        return unitModuleIDs;
-    }
-
-    public void setUnitModuleIDs(int[] unitModuleIDs) {
-        this.unitModuleIDs = unitModuleIDs;
-    }
-
     /**
      * 移動処理。
      *
      * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
+     * TODO 操作系はクラス分けする
      */
     public boolean move() {
         switch (direction) {

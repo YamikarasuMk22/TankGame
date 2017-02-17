@@ -1,8 +1,10 @@
 package com.tanksister.common;
 
 public interface Common {
-    // ユニットイメージファイル
-    public static final String UNIT_IMG = "image/Unit.gif";
+    // ユニットイメージアセット
+    public static final String UNIT_IMG = "Image/UnitImage.asset";
+    // ユニットパラメータアセット
+    public static final String UNIT_PARAM = "Units/UnitParam.asset";
 
     // 方向を表す定数
     public static final int LEFT = 0;
