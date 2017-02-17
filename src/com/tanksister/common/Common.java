@@ -4,7 +4,7 @@ public interface Common {
     // ユニットイメージアセット
     public static final String UNIT_IMG = "Image/UnitImage.asset";
     // ユニットパラメータアセット
-    public static final String UNIT_PARAM = "Units/UnitParam.asset";
+    public static final String UNIT_PARAM = "Units/Unit.asset";
 
     // 方向を表す定数
     public static final int LEFT = 0;
