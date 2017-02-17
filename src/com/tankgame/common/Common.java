@@ -1,4 +1,4 @@
-package com.tanksister.common;
+package com.tankgame.common;
 
 public interface Common {
     // ユニットイメージアセット

@@ -1,4 +1,4 @@
-package com.tanksister.util;
+package com.tankgame.util;
 
 public class CrewUtil {
 

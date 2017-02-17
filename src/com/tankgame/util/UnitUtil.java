@@ -1,4 +1,4 @@
-package com.tanksister.util;
+package com.tankgame.util;
 
 public class UnitUtil {
     //ユニットタイプ・オブジェクトタイプから絶対攻撃力を取得 TODO

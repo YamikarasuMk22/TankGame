@@ -1,4 +1,4 @@
-package com.tanksister.objects;
+package com.tankgame.objects;
 
 public class UnitData {
 

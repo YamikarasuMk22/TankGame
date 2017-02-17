@@ -1,4 +1,4 @@
-package com.tanksister.util;
+package com.tankgame.util;
 
 public class ParamUtil {
 	//指揮官階級から各種補正値を算出 TODO

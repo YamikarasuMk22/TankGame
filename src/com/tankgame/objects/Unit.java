@@ -1,11 +1,11 @@
-package com.tanksister.objects;
+package com.tankgame.objects;
 
 import java.awt.image.BufferedImage;
 import java.util.Map;
 
-import com.tanksister.common.Common;
-import com.tanksister.thread.AnimationThread;
-import com.tanksister.util.ImageUtil;
+import com.tankgame.common.Common;
+import com.tankgame.thread.AnimationThread;
+import com.tankgame.util.ImageUtil;
 
 public class Unit implements Common {
 

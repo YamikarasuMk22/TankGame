@@ -1,8 +1,8 @@
-package com.tanksister.objects;
+package com.tankgame.objects;
 
 import java.awt.image.BufferedImage;
 
-import com.tanksister.util.ImageUtil;
+import com.tankgame.util.ImageUtil;
 
 public class Crew {
 

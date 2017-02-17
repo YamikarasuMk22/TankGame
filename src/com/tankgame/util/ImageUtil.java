@@ -1,4 +1,4 @@
-package com.tanksister.util;
+package com.tankgame.util;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.tanksister.common.Common;
-import com.tanksister.objects.Unit;
+import com.tankgame.common.Common;
+import com.tankgame.objects.Unit;
 
 public class ImageUtil implements Common {
 
