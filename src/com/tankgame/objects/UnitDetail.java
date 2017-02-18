@@ -10,11 +10,11 @@ import com.tankgame.util.ImageUtil;
 public class UnitDetail implements Common {
 
     /** ユニット基本情報 **/
-	/** TODO cfg → UnitDataオブジェクトにロード → 描画時はUnitオブジェクトに呼び出し？ **/
+	/** TODO cfg → unitObjオブジェクトにロード → 描画時はUnitオブジェクトに呼び出し？ **/
     // ユニットID
     private int unitID;
     // ユニット基本情報
-    private Unit unitData;
+    private Unit unitObj;
 
     // 所属部隊ID
     private int divisionID;
@@ -50,8 +50,8 @@ public class UnitDetail implements Common {
     private int moveType;
 
     /** UI情報 **/
-    // イメージ
-    private BufferedImage unitImage;
+    // ユニットイメージ(マップ描画用)
+    private BufferedImage unitMapImage;
     // アニメーションカウンタ
     public static int count = 0;
     // アニメーション用スレッド
@@ -60,22 +60,22 @@ public class UnitDetail implements Common {
     private Map map;
 
     // 最小
-    public UnitDetail(Unit unitData) {
-        this.unitID = unitData.getUnitID();
+    public UnitDetail(Unit unitObj) {
+        this.unitID = unitObj.getUnitID();
     }
 
     // 情報のみ
-    public UnitDetail(Unit unitData, int divisionID, int[] unitCrewIDs, int[] unitModuleIDs) {
-    	this.unitID = unitData.getUnitID();
+    public UnitDetail(Unit unitObj, int divisionID, int[] unitCrewIDs, int[] unitModuleIDs) {
+    	this.unitID = unitObj.getUnitID();
         this.divisionID = divisionID;
         this.unitCrewIDs = unitCrewIDs;
         this.unitModuleIDs = unitModuleIDs;
     }
 
     // フル
-    public UnitDetail(Unit unitData, int divisionID, int[] unitCrewIDs, int[] unitModuleIDs,
+    public UnitDetail(Unit unitObj, int divisionID, int[] unitCrewIDs, int[] unitModuleIDs,
             int unitMorale, int unitDuration, int x, int y, int direction, int moveType, Map map) {
-    	this.unitID = unitData.getUnitID();
+    	this.unitID = unitObj.getUnitID();
         this.divisionID = divisionID;
         this.unitCrewIDs = unitCrewIDs;
         this.unitModuleIDs = unitModuleIDs;
@@ -91,7 +91,7 @@ public class UnitDetail implements Common {
         this.map = map;
 
         // 初回の呼び出しのみイメージをロード
-        if (unitImage == null) {
+        if (unitMapImage == null) {
             ImageUtil.loadImage();
         }
 
@@ -141,11 +141,11 @@ public class UnitDetail implements Common {
     }
 
     public Unit getUnitParam() {
-		return unitData;
+		return unitObj;
 	}
 
-	public void setUnitParam(Unit unitParam) {
-		this.unitData = unitParam;
+	public void setUnitParam(Unit unitObj) {
+		this.unitObj = unitObj;
 	}
 
 	public int[] getUnitModuleIDs() {
@@ -204,199 +204,5 @@ public class UnitDetail implements Common {
 
     public int getMoveType() {
         return moveType;
-    }
-
-    /**
-     * 移動処理。
-     *
-     * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
-     * TODO 操作系はクラス分けする
-     */
-    public boolean move() {
-        switch (direction) {
-        case LEFT:
-            if (moveLeft()) {
-                // 移動が完了した
-                return true;
-            }
-            break;
-        case RIGHT:
-            if (moveRight()) {
-                // 移動が完了した
-                return true;
-            }
-            break;
-        case UP:
-            if (moveUp()) {
-                // 移動が完了した
-                return true;
-            }
-            break;
-        case DOWN:
-            if (moveDown()) {
-                // 移動が完了した
-                return true;
-            }
-            break;
-        }
-
-        // 移動が完了していない
-        return false;
-    }
-
-    /**
-     * 左へ移動する。
-     *
-     * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
-     */
-    private boolean moveLeft() {
-        // 1マス先の座標
-        int nextX = x - 1;
-        int nextY = y;
-        if (nextX < 0) {
-            nextX = 0;
-        }
-        // // その場所に障害物がなければ移動を開始
-        // if (!map.isHit(nextX, nextY)) {
-        // // SPEEDピクセル分移動
-        // px -= TankUnit.SPEED_PER_PX;
-        // if (px < 0) {
-        // px = 0;
-        // }
-        // // 移動距離を加算
-        // movingLength += Unit.SPEED_PER_PX;
-        // // 移動が1マス分を超えていたら
-        // if (movingLength >= CS) {
-        // // 移動する
-        // x--;
-        // px = x * CS;
-        // // 移動が完了
-        // isMoving = false;
-        // return true;
-        // }
-        // } else {
-        // isMoving = false;
-        // // 元の位置に戻す
-        // px = x * CS;
-        // py = y * CS;
-        // }
-
-        return false;
-    }
-
-    /**
-     * 右へ移動する。
-     *
-     * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
-     */
-    private boolean moveRight() {
-        // 1マス先の座標
-        int nextX = x + 1;
-        int nextY = y;
-        // if (nextX > map.getCol() - 1) {
-        // nextX = map.getCol() - 1;
-        // }
-        // // その場所に障害物がなければ移動を開始
-        // if (!map.isHit(nextX, nextY)) {
-        // // SPEEDピクセル分移動
-        // px += Unit.SPEED_PER_PX;
-        // if (px > map.getWidth() - CS) {
-        // px = map.getWidth() - CS;
-        // }
-        // // 移動距離を加算
-        // movingLength += Unit.SPEED_PER_PX;
-        // // 移動が1マス分を超えていたら
-        // if (movingLength >= CS) {
-        // // 移動する
-        // x++;
-        // px = x * CS;
-        // // 移動が完了
-        // isMoving = false;
-        // return true;
-        // }
-        // } else {
-        // isMoving = false;
-        // px = x * CS;
-        // py = y * CS;
-        // }
-
-        return false;
-    }
-
-    /**
-     * 上へ移動する。
-     *
-     * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
-     */
-    private boolean moveUp() {
-        // 1マス先の座標
-        int nextX = x;
-        int nextY = y - 1;
-        if (nextY < 0) {
-            nextY = 0;
-        }
-        // // その場所に障害物がなければ移動を開始
-        // if (!map.isHit(nextX, nextY)) {
-        // // SPEEDピクセル分移動
-        // py -= Unit.SPEED_PER_PX;
-        // if (py < 0)
-        // py = 0;
-        // // 移動距離を加算
-        // movingLength += Unit.SPEED_PER_PX;
-        // // 移動が1マス分を超えていたら
-        // if (movingLength >= CS) {
-        // // 移動する
-        // y--;
-        // py = y * CS;
-        // // 移動が完了
-        // isMoving = false;
-        // return true;
-        // }
-        // } else {
-        // isMoving = false;
-        // px = x * CS;
-        // py = y * CS;
-        // }
-        //
-        return false;
-    }
-
-    /**
-     * 下へ移動する。
-     *
-     * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
-     */
-    private boolean moveDown() {
-        // 1マス先の座標
-        int nextX = x;
-        int nextY = y + 1;
-        // if (nextY > map.getRow() - 1) {
-        // nextY = map.getRow() - 1;
-        // }
-        // // その場所に障害物がなければ移動を開始
-        // if (!map.isHit(nextX, nextY)) {
-        // // SPEEDピクセル分移動
-        // py += Unit.SPEED_PER_PX;
-        // if (py > map.getHeight() - CS) {
-        // py = map.getHeight() - CS;
-        // }
-        // // 移動距離を加算
-        // movingLength += Unit.SPEED_PER_PX;
-        // // 移動が1マス分を超えていたら
-        // if (movingLength >= CS) {
-        // // 移動する
-        // y++;
-        // py = y * CS;
-        // // 移動が完了
-        // isMoving = false;
-        // return true;
-        // }
-        // } else {
-        // isMoving = false;
-        // px = x * CS;
-        // py = y * CS;
-        // }
-
-        return false;
     }
 }

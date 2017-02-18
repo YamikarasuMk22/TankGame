@@ -1,5 +1,7 @@
 package com.tankgame.objects;
 
+import java.awt.image.BufferedImage;
+
 public class Unit {
 
 	// ユニットID
@@ -16,6 +18,10 @@ public class Unit {
 	/** ユニットパラメータ(絶対値) **/
     // 0:攻撃力 1:前面防御力 2:側面防御力 3:背面防御力 4:耐久力 5:機動性(移動範囲)
     private static int[] unitBaseParams;
+
+    /** UI情報 **/
+    // ユニットイメージ
+    private BufferedImage unitImage;
 
 //    // 攻撃力
 //    private static int unitAttackPoint;
@@ -76,6 +82,14 @@ public class Unit {
 
 	public static void setUnitBaseParams(int[] unitBaseParams) {
 		Unit.unitBaseParams = unitBaseParams;
+	}
+
+	public BufferedImage getUnitImage() {
+		return unitImage;
+	}
+
+	public void setUnitImage(BufferedImage unitImage) {
+		this.unitImage = unitImage;
 	}
 
 //    public static int getUnitAttackPoint() {

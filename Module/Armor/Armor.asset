@@ -1,0 +1,21 @@
+
+// Armor.asset:ユニットが装備する装備品(装甲)のパラメータが定義されたcfgファイルを設定します。
+
+// テスト
+// 前面装甲
+Armor = {
+	Name = "TestFrontArmor"
+	File = "TestFrontArmor.cfg"
+}
+
+// 側面装甲
+Armor = {
+	Name = "TestSideArmor"
+	File = "TestSideArmor.cfg"
+}
+
+// 背面装甲
+Armor = {
+	Name = "TestBackArmor"
+	File = "TestBackArmor.cfg"
+}

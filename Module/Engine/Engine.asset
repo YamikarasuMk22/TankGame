@@ -1,0 +1,9 @@
+
+// Engine.asset:ユニットが装備する装備品(エンジン)のパラメータが定義されたcfgファイルを設定します。
+
+// テスト
+// エンジン
+Engine = {
+	Name = "TestEngine"
+	File = "TestEngine.cfg"
+}

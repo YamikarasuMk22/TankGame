@@ -1,0 +1,9 @@
+
+// Track.asset:ユニットが装備する装備品(履帯)のパラメータが定義されたcfgファイルを設定します。
+
+// テスト
+// 履帯
+Track = {
+	Name = "TestTrack"
+	File = "TestTrack.cfg"
+}

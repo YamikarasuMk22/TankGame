@@ -1,0 +1,9 @@
+
+// Barrel.asset:ユニットが装備する装備品(砲身)のパラメータが定義されたcfgファイルを設定します。
+
+// TEST
+// 砲身
+Barrel = {
+	Name = "TestBarrel"
+	File = "TestBarrel.cfg"
+}
