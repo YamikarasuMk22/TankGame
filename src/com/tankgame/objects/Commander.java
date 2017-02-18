@@ -11,6 +11,8 @@ public class Commander {
     private String commanderName;
     // 指揮官説明文ID
     private int commanderDescriptionID;
+    // 所属部隊ID
+    private int divisionID;
     // 階級ID
     private int commanderGradeID;
 

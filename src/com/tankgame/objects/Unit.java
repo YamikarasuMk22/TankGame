@@ -1,402 +1,129 @@
 package com.tankgame.objects;
 
-import java.awt.image.BufferedImage;
-import java.util.Map;
+public class Unit {
 
-import com.tankgame.common.Common;
-import com.tankgame.thread.AnimationThread;
-import com.tankgame.util.ImageUtil;
-
-public class Unit implements Common {
-
-    /** ユニット基本情報 **/
-	/** TODO cfg → UnitDataオブジェクトにロード → 描画時はUnitオブジェクトに呼び出し？ **/
-    // ユニットID
+	// ユニットID
     private int unitID;
-    // ユニット基本情報
-    private UnitData unitData;
+	// ユニットタイプ
+    private int unitType;
+    // オブジェクトタイプ
+    private int objectType;
+    // ユニット名
+    private String unitName;
+    // ユニット説明文ID
+    private String unitDescriptionID;
 
-    // 所属部隊ID
-    private int divisionID;
-    // 乗員IDリスト
-    private int[] unitCrewIDs;
-    // 士気
-    private int unitMorale;
-    // 練度
-    private int unitDuration;
-
-    // 装備IDリスト
-    // 0:砲身ID 1:前面装甲ID 2:側面装甲ID 3:背面装甲ID 4:エンジンID 5:履帯ID
-    private int[] unitModuleIDs;
-    // 弾頭IDリスト
-    // 0:AP弾頭 1:HE弾頭
-    // private int[] unitShellIDs;
-
-    /** ユニットパラメータ(補正値) **/
+	/** ユニットパラメータ(絶対値) **/
     // 0:攻撃力 1:前面防御力 2:側面防御力 3:背面防御力 4:耐久力 5:機動性(移動範囲)
-    private static int[] unitParams;
+    private static int[] unitBaseParams;
 
-    /** ユニット状態情報 TODO オブジェクト分ける？ **/
-    // 座標
-    private int x, y; // 単位：マス
-    private int px, py; // 単位：ピクセル
-    // 向いている方向（LEFT,RIGHT,UP,DOWNのどれか）
-    private int direction;
-    // 移動中（スクロール中）か
-    private boolean isMoving;
-    // 移動中の場合の移動ピクセル数
-    private int movingLength;
-    // 移動方法
-    private int moveType;
-
-    /** UI情報 **/
-    // イメージ
-    private BufferedImage unitImage;
-    // アニメーションカウンタ
-    public static int count = 0;
-    // アニメーション用スレッド
-    private Thread threadAnime;
-    // マップへの参照
-    private Map map;
-
-    // 最小
-    public Unit(UnitData unitData) {
-        this.unitID = unitData.getUnitID();
-    }
-
-    // 情報のみ
-    public Unit(UnitData unitData, int divisionID, int[] unitCrewIDs, int[] unitModuleIDs) {
-    	this.unitID = unitData.getUnitID();
-        this.divisionID = divisionID;
-        this.unitCrewIDs = unitCrewIDs;
-        this.unitModuleIDs = unitModuleIDs;
-    }
-
-    // フル
-    public Unit(UnitData unitData, int divisionID, int[] unitCrewIDs, int[] unitModuleIDs,
-            int unitMorale, int unitDuration, int x, int y, int direction, int moveType, Map map) {
-    	this.unitID = unitData.getUnitID();
-        this.divisionID = divisionID;
-        this.unitCrewIDs = unitCrewIDs;
-        this.unitModuleIDs = unitModuleIDs;
-
-        this.x = x;
-        this.y = y;
-
-        this.px = x * CS;
-        this.py = y * CS;
-
-        this.direction = direction;
-        this.moveType = moveType;
-        this.map = map;
-
-        // 初回の呼び出しのみイメージをロード
-        if (unitImage == null) {
-            ImageUtil.loadImage();
-        }
-
-        // ユニットアニメーション用スレッド開始
-        threadAnime = new Thread(new AnimationThread());
-        threadAnime.start();
-    }
+//    // 攻撃力
+//    private static int unitAttackPoint;
+//    // 前面防御力
+//    private static int unitFrontArmorPoint;
+//    // 側面防御力
+//    private static int unitSideArmorPoint;
+//    // 背面防御力
+//    private static int unitBackArmorPoint;
+//    // 耐久力
+//    private static int unitHitPoint;
+//    // 機動性(移動範囲)
+//    private static int unitMoveLenght;
 
     public int getUnitID() {
-        return unitID;
-    }
-
-    public void setUnitID(int unitID) {
-        this.unitID = unitID;
-    }
-
-    public int getUnitMorale() {
-		return unitMorale;
+		return unitID;
 	}
 
-	public void setUnitMorale(int unitMorale) {
-		this.unitMorale = unitMorale;
+	public void setUnitID(int unitID) {
+		this.unitID = unitID;
 	}
 
-	public int getUnitDuration() {
-		return unitDuration;
+	public int getUnitType() {
+        return unitType;
+    }
+
+    public void setUnitType(int unitType) {
+        this.unitType = unitType;
+    }
+
+    public int getObjectType() {
+        return objectType;
+    }
+
+    public void setObjectType(int objectType) {
+        this.objectType = objectType;
+    }
+
+    public String getUnitName() {
+        return unitName;
+    }
+
+    public void setUnitName(String unitName) {
+        this.unitName = unitName;
+    }
+
+    public String getUnitDescriptionID() {
+        return unitDescriptionID;
+    }
+
+    public void setUnitDescriptionID(String unitDescriptionID) {
+        this.unitDescriptionID = unitDescriptionID;
+    }
+
+	public static int[] getUnitBaseParams() {
+		return unitBaseParams;
 	}
 
-	public void setUnitDuration(int unitDuration) {
-		this.unitDuration = unitDuration;
+	public static void setUnitBaseParams(int[] unitBaseParams) {
+		Unit.unitBaseParams = unitBaseParams;
 	}
 
-	public int getDivisionID() {
-        return divisionID;
-    }
+//    public static int getUnitAttackPoint() {
+//        return UnitParam.unitAttackPoint;
+//    }
+//
+//    public static void setUnitAttackPoint(int unitAttackPoint) {
+//    	UnitParam.unitAttackPoint = unitAttackPoint;
+//    }
+//
+//    public static int getUnitFrontArmorPoint() {
+//        return UnitParam.unitFrontArmorPoint;
+//    }
+//
+//    public static void setUnitFrontArmorPoint(int unitFrontArmorPoint) {
+//        UnitParam.unitFrontArmorPoint = unitFrontArmorPoint;
+//    }
+//
+//    public static int getUnitSideArmorPoint() {
+//        return UnitParam.unitSideArmorPoint;
+//    }
+//
+//    public static void setUnitSideArmorPoint(int unitSideArmorPoint) {
+//        UnitParam.unitSideArmorPoint = unitSideArmorPoint;
+//    }
+//
+//    public static int getUnitBackArmorPoint() {
+//        return UnitParam.unitBackArmorPoint;
+//    }
+//
+//    public static void setUnitBackArmorPoint(int unitBackArmorPoint) {
+//        UnitParam.unitBackArmorPoint = unitBackArmorPoint;
+//    }
+//
+//    public static int getUnitHitPoint() {
+//        return UnitParam.unitHitPoint;
+//    }
+//
+//    public static void setUnitHitPoint(int unitHitPoint) {
+//        UnitParam.unitHitPoint = unitHitPoint;
+//    }
+//
+//    public static int getUnitMoveLenght() {
+//        return UnitParam.unitMoveLenght;
+//    }
+//
+//    public static void setUnitMoveLenght(int unitMoveLenght) {
+//        UnitParam.unitMoveLenght = unitMoveLenght;
+//    }
 
-    public void setDivisionID(int divisionID) {
-        this.divisionID = divisionID;
-    }
-
-    public int[] getUnitCrewIDs() {
-        return unitCrewIDs;
-    }
-
-    public void setUnitCrewIDs(int[] unitCrewIDs) {
-        this.unitCrewIDs = unitCrewIDs;
-    }
-
-    public UnitData getUnitParam() {
-		return unitData;
-	}
-
-	public void setUnitParam(UnitData unitParam) {
-		this.unitData = unitParam;
-	}
-
-	public int[] getUnitModuleIDs() {
-        return unitModuleIDs;
-    }
-
-    public void setUnitModuleIDs(int[] unitModuleIDs) {
-        this.unitModuleIDs = unitModuleIDs;
-    }
-
-    public static int[] getUnitParams() {
-		return unitParams;
-	}
-
-	public static void setUnitParams(int[] unitParams) {
-		Unit.unitParams = unitParams;
-	}
-
-	public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public int getPx() {
-        return px;
-    }
-
-    public int getPy() {
-        return py;
-    }
-
-    public int getDirection() {
-        return direction;
-    }
-
-    public void setDirection(int direction) {
-        this.direction = direction;
-    }
-
-    public boolean isMoving() {
-        return isMoving;
-    }
-
-    public void setMoving(boolean flag) {
-        isMoving = flag;
-        // 移動距離を初期化
-        movingLength = 0;
-    }
-
-    public int getMovingLength() {
-        return movingLength;
-    }
-
-    public int getMoveType() {
-        return moveType;
-    }
-
-    /**
-     * 移動処理。
-     *
-     * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
-     * TODO 操作系はクラス分けする
-     */
-    public boolean move() {
-        switch (direction) {
-        case LEFT:
-            if (moveLeft()) {
-                // 移動が完了した
-                return true;
-            }
-            break;
-        case RIGHT:
-            if (moveRight()) {
-                // 移動が完了した
-                return true;
-            }
-            break;
-        case UP:
-            if (moveUp()) {
-                // 移動が完了した
-                return true;
-            }
-            break;
-        case DOWN:
-            if (moveDown()) {
-                // 移動が完了した
-                return true;
-            }
-            break;
-        }
-
-        // 移動が完了していない
-        return false;
-    }
-
-    /**
-     * 左へ移動する。
-     *
-     * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
-     */
-    private boolean moveLeft() {
-        // 1マス先の座標
-        int nextX = x - 1;
-        int nextY = y;
-        if (nextX < 0) {
-            nextX = 0;
-        }
-        // // その場所に障害物がなければ移動を開始
-        // if (!map.isHit(nextX, nextY)) {
-        // // SPEEDピクセル分移動
-        // px -= TankUnit.SPEED_PER_PX;
-        // if (px < 0) {
-        // px = 0;
-        // }
-        // // 移動距離を加算
-        // movingLength += Unit.SPEED_PER_PX;
-        // // 移動が1マス分を超えていたら
-        // if (movingLength >= CS) {
-        // // 移動する
-        // x--;
-        // px = x * CS;
-        // // 移動が完了
-        // isMoving = false;
-        // return true;
-        // }
-        // } else {
-        // isMoving = false;
-        // // 元の位置に戻す
-        // px = x * CS;
-        // py = y * CS;
-        // }
-
-        return false;
-    }
-
-    /**
-     * 右へ移動する。
-     *
-     * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
-     */
-    private boolean moveRight() {
-        // 1マス先の座標
-        int nextX = x + 1;
-        int nextY = y;
-        // if (nextX > map.getCol() - 1) {
-        // nextX = map.getCol() - 1;
-        // }
-        // // その場所に障害物がなければ移動を開始
-        // if (!map.isHit(nextX, nextY)) {
-        // // SPEEDピクセル分移動
-        // px += Unit.SPEED_PER_PX;
-        // if (px > map.getWidth() - CS) {
-        // px = map.getWidth() - CS;
-        // }
-        // // 移動距離を加算
-        // movingLength += Unit.SPEED_PER_PX;
-        // // 移動が1マス分を超えていたら
-        // if (movingLength >= CS) {
-        // // 移動する
-        // x++;
-        // px = x * CS;
-        // // 移動が完了
-        // isMoving = false;
-        // return true;
-        // }
-        // } else {
-        // isMoving = false;
-        // px = x * CS;
-        // py = y * CS;
-        // }
-
-        return false;
-    }
-
-    /**
-     * 上へ移動する。
-     *
-     * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
-     */
-    private boolean moveUp() {
-        // 1マス先の座標
-        int nextX = x;
-        int nextY = y - 1;
-        if (nextY < 0) {
-            nextY = 0;
-        }
-        // // その場所に障害物がなければ移動を開始
-        // if (!map.isHit(nextX, nextY)) {
-        // // SPEEDピクセル分移動
-        // py -= Unit.SPEED_PER_PX;
-        // if (py < 0)
-        // py = 0;
-        // // 移動距離を加算
-        // movingLength += Unit.SPEED_PER_PX;
-        // // 移動が1マス分を超えていたら
-        // if (movingLength >= CS) {
-        // // 移動する
-        // y--;
-        // py = y * CS;
-        // // 移動が完了
-        // isMoving = false;
-        // return true;
-        // }
-        // } else {
-        // isMoving = false;
-        // px = x * CS;
-        // py = y * CS;
-        // }
-        //
-        return false;
-    }
-
-    /**
-     * 下へ移動する。
-     *
-     * @return 1マス移動が完了したらtrueを返す。移動中はfalseを返す。
-     */
-    private boolean moveDown() {
-        // 1マス先の座標
-        int nextX = x;
-        int nextY = y + 1;
-        // if (nextY > map.getRow() - 1) {
-        // nextY = map.getRow() - 1;
-        // }
-        // // その場所に障害物がなければ移動を開始
-        // if (!map.isHit(nextX, nextY)) {
-        // // SPEEDピクセル分移動
-        // py += Unit.SPEED_PER_PX;
-        // if (py > map.getHeight() - CS) {
-        // py = map.getHeight() - CS;
-        // }
-        // // 移動距離を加算
-        // movingLength += Unit.SPEED_PER_PX;
-        // // 移動が1マス分を超えていたら
-        // if (movingLength >= CS) {
-        // // 移動する
-        // y++;
-        // py = y * CS;
-        // // 移動が完了
-        // isMoving = false;
-        // return true;
-        // }
-        // } else {
-        // isMoving = false;
-        // px = x * CS;
-        // py = y * CS;
-        // }
-
-        return false;
-    }
 }
