@@ -3,7 +3,7 @@
 
 // TEST
 // 砲身
-Barrel = {
+Module = {
 	Name = "TestBarrel"
 	File = "TestBarrel.cfg"
 }

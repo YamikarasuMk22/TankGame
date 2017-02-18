@@ -1,4 +1,3 @@
-
 // ユニットのパラメータを定義します。
 //
 // Name: Unitオブジェクト.ユニット名
@@ -32,9 +31,9 @@
 
 UNIT
 {
-	Name = "TestTank"
-	Type = "TankUnit"
-	UnitType = "HeavyTank"
+	Name = "UnitName"
+	Type = "ObjectType"
+	UnitType = "UnitType"
 
 	Attack = 200
 	FrontArmor = 100
@@ -43,5 +42,5 @@ UNIT
 	HitPoint = 1000
 	MoveLenght = 3
 
-	Description = "テスト用重戦車です。"
+	Description = "UnitDescription"
 }

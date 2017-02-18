@@ -5,51 +5,51 @@ import java.awt.image.BufferedImage;
 public class Unit {
 
 	// ユニットID
-    private int unitID;
+    private int ID;
 	// ユニットタイプ
-    private int unitType;
+    private int type;
     // オブジェクトタイプ
     private int objectType;
     // ユニット名
-    private String unitName;
+    private String name;
     // ユニット説明文ID
-    private String unitDescriptionID;
+    private String descriptionID;
 
 	/** ユニットパラメータ(絶対値) **/
     // 0:攻撃力 1:前面防御力 2:側面防御力 3:背面防御力 4:耐久力 5:機動性(移動範囲)
-    private static int[] unitBaseParams;
+    private int[] baseParams;
 
     /** UI情報 **/
     // ユニットイメージ
-    private BufferedImage unitImage;
+    private BufferedImage image;
 
 //    // 攻撃力
-//    private static int unitAttackPoint;
+//    private static int AttackPoint;
 //    // 前面防御力
-//    private static int unitFrontArmorPoint;
+//    private static int FrontArmorPoint;
 //    // 側面防御力
-//    private static int unitSideArmorPoint;
+//    private static int SideArmorPoint;
 //    // 背面防御力
-//    private static int unitBackArmorPoint;
+//    private static int BackArmorPoint;
 //    // 耐久力
-//    private static int unitHitPoint;
+//    private static int HitPoint;
 //    // 機動性(移動範囲)
-//    private static int unitMoveLenght;
+//    private static int MoveLenght;
 
-    public int getUnitID() {
-		return unitID;
+    public int getID() {
+		return ID;
 	}
 
-	public void setUnitID(int unitID) {
-		this.unitID = unitID;
+	public void setID(int ID) {
+		this.ID = ID;
 	}
 
-	public int getUnitType() {
-        return unitType;
+	public int getType() {
+        return type;
     }
 
-    public void setUnitType(int unitType) {
-        this.unitType = unitType;
+    public void setType(int Type) {
+        this.type = Type;
     }
 
     public int getObjectType() {
@@ -60,84 +60,84 @@ public class Unit {
         this.objectType = objectType;
     }
 
-    public String getUnitName() {
-        return unitName;
+    public String getName() {
+        return name;
     }
 
-    public void setUnitName(String unitName) {
-        this.unitName = unitName;
+    public void setName(String Name) {
+        this.name = Name;
     }
 
-    public String getUnitDescriptionID() {
-        return unitDescriptionID;
+    public String getDescriptionID() {
+        return descriptionID;
     }
 
-    public void setUnitDescriptionID(String unitDescriptionID) {
-        this.unitDescriptionID = unitDescriptionID;
+    public void setDescriptionID(String DescriptionID) {
+        this.descriptionID = DescriptionID;
     }
 
-	public static int[] getUnitBaseParams() {
-		return unitBaseParams;
+	public int[] getBaseParams() {
+		return baseParams;
 	}
 
-	public static void setUnitBaseParams(int[] unitBaseParams) {
-		Unit.unitBaseParams = unitBaseParams;
+	public void setBaseParams(int[] BaseParams) {
+		this.baseParams = BaseParams;
 	}
 
-	public BufferedImage getUnitImage() {
-		return unitImage;
+	public BufferedImage getImage() {
+		return image;
 	}
 
-	public void setUnitImage(BufferedImage unitImage) {
-		this.unitImage = unitImage;
+	public void setImage(BufferedImage Image) {
+		this.image = Image;
 	}
 
-//    public static int getUnitAttackPoint() {
-//        return UnitParam.unitAttackPoint;
+//    public static int getAttackPoint() {
+//        return Param.AttackPoint;
 //    }
 //
-//    public static void setUnitAttackPoint(int unitAttackPoint) {
-//    	UnitParam.unitAttackPoint = unitAttackPoint;
+//    public static void setAttackPoint(int AttackPoint) {
+//    	Param.AttackPoint = AttackPoint;
 //    }
 //
-//    public static int getUnitFrontArmorPoint() {
-//        return UnitParam.unitFrontArmorPoint;
+//    public static int getFrontArmorPoint() {
+//        return Param.FrontArmorPoint;
 //    }
 //
-//    public static void setUnitFrontArmorPoint(int unitFrontArmorPoint) {
-//        UnitParam.unitFrontArmorPoint = unitFrontArmorPoint;
+//    public static void setFrontArmorPoint(int FrontArmorPoint) {
+//        Param.FrontArmorPoint = FrontArmorPoint;
 //    }
 //
-//    public static int getUnitSideArmorPoint() {
-//        return UnitParam.unitSideArmorPoint;
+//    public static int getSideArmorPoint() {
+//        return Param.SideArmorPoint;
 //    }
 //
-//    public static void setUnitSideArmorPoint(int unitSideArmorPoint) {
-//        UnitParam.unitSideArmorPoint = unitSideArmorPoint;
+//    public static void setSideArmorPoint(int SideArmorPoint) {
+//        Param.SideArmorPoint = SideArmorPoint;
 //    }
 //
-//    public static int getUnitBackArmorPoint() {
-//        return UnitParam.unitBackArmorPoint;
+//    public static int getBackArmorPoint() {
+//        return Param.BackArmorPoint;
 //    }
 //
-//    public static void setUnitBackArmorPoint(int unitBackArmorPoint) {
-//        UnitParam.unitBackArmorPoint = unitBackArmorPoint;
+//    public static void setBackArmorPoint(int BackArmorPoint) {
+//        Param.BackArmorPoint = BackArmorPoint;
 //    }
 //
-//    public static int getUnitHitPoint() {
-//        return UnitParam.unitHitPoint;
+//    public static int getHitPoint() {
+//        return Param.HitPoint;
 //    }
 //
-//    public static void setUnitHitPoint(int unitHitPoint) {
-//        UnitParam.unitHitPoint = unitHitPoint;
+//    public static void setHitPoint(int HitPoint) {
+//        Param.HitPoint = HitPoint;
 //    }
 //
-//    public static int getUnitMoveLenght() {
-//        return UnitParam.unitMoveLenght;
+//    public static int getMoveLenght() {
+//        return Param.MoveLenght;
 //    }
 //
-//    public static void setUnitMoveLenght(int unitMoveLenght) {
-//        UnitParam.unitMoveLenght = unitMoveLenght;
+//    public static void setMoveLenght(int MoveLenght) {
+//        Param.MoveLenght = MoveLenght;
 //    }
 
 }

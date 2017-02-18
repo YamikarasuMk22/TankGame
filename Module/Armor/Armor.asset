@@ -3,19 +3,19 @@
 
 // テスト
 // 前面装甲
-Armor = {
+Module = {
 	Name = "TestFrontArmor"
 	File = "TestFrontArmor.cfg"
 }
 
 // 側面装甲
-Armor = {
+Module = {
 	Name = "TestSideArmor"
 	File = "TestSideArmor.cfg"
 }
 
 // 背面装甲
-Armor = {
+Module = {
 	Name = "TestBackArmor"
 	File = "TestBackArmor.cfg"
 }

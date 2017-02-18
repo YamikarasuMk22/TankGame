@@ -1,0 +1,8 @@
+
+// MediumTank.asset:ユニットのパラメータが定義されたcfgファイルを設定します。
+
+// TEST
+Unit = {
+	Name = "MediumTankTest"
+	File = "MediumTankTest.cfg"
+}

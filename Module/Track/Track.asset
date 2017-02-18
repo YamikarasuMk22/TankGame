@@ -3,7 +3,7 @@
 
 // テスト
 // 履帯
-Track = {
+Module = {
 	Name = "TestTrack"
 	File = "TestTrack.cfg"
 }

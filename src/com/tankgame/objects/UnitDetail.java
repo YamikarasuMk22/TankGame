@@ -12,29 +12,29 @@ public class UnitDetail implements Common {
     /** ユニット基本情報 **/
 	/** TODO cfg → unitObjオブジェクトにロード → 描画時はUnitオブジェクトに呼び出し？ **/
     // ユニットID
-    private int unitID;
+    private int ID;
     // ユニット基本情報
     private Unit unitObj;
 
     // 所属部隊ID
     private int divisionID;
     // 乗員IDリスト
-    private int[] unitCrewIDs;
+    private int[] crewIDs;
     // 士気
-    private int unitMorale;
+    private int morale;
     // 練度
-    private int unitDuration;
+    private int duration;
 
     // 装備IDリスト
     // 0:砲身ID 1:前面装甲ID 2:側面装甲ID 3:背面装甲ID 4:エンジンID 5:履帯ID
-    private int[] unitModuleIDs;
+    private int[] moduleIDs;
     // 弾頭IDリスト
     // 0:AP弾頭 1:HE弾頭
     // private int[] unitShellIDs;
 
     /** ユニットパラメータ(補正値) **/
     // 0:攻撃力 1:前面防御力 2:側面防御力 3:背面防御力 4:耐久力 5:機動性(移動範囲)
-    private static int[] unitParams;
+    private int[] params;
 
     /** ユニット状態情報 TODO オブジェクト分ける？ **/
     // 座標
@@ -61,24 +61,24 @@ public class UnitDetail implements Common {
 
     // 最小
     public UnitDetail(Unit unitObj) {
-        this.unitID = unitObj.getUnitID();
+        this.ID = unitObj.getID();
     }
 
     // 情報のみ
     public UnitDetail(Unit unitObj, int divisionID, int[] unitCrewIDs, int[] unitModuleIDs) {
-    	this.unitID = unitObj.getUnitID();
+    	this.ID = unitObj.getID();
         this.divisionID = divisionID;
-        this.unitCrewIDs = unitCrewIDs;
-        this.unitModuleIDs = unitModuleIDs;
+        this.crewIDs = unitCrewIDs;
+        this.moduleIDs = unitModuleIDs;
     }
 
     // フル
     public UnitDetail(Unit unitObj, int divisionID, int[] unitCrewIDs, int[] unitModuleIDs,
             int unitMorale, int unitDuration, int x, int y, int direction, int moveType, Map map) {
-    	this.unitID = unitObj.getUnitID();
+    	this.ID = unitObj.getID();
         this.divisionID = divisionID;
-        this.unitCrewIDs = unitCrewIDs;
-        this.unitModuleIDs = unitModuleIDs;
+        this.crewIDs = unitCrewIDs;
+        this.moduleIDs = unitModuleIDs;
 
         this.x = x;
         this.y = y;
@@ -101,27 +101,27 @@ public class UnitDetail implements Common {
     }
 
     public int getUnitID() {
-        return unitID;
+        return ID;
     }
 
     public void setUnitID(int unitID) {
-        this.unitID = unitID;
+        this.ID = unitID;
     }
 
     public int getUnitMorale() {
-		return unitMorale;
+		return morale;
 	}
 
 	public void setUnitMorale(int unitMorale) {
-		this.unitMorale = unitMorale;
+		this.morale = unitMorale;
 	}
 
 	public int getUnitDuration() {
-		return unitDuration;
+		return duration;
 	}
 
 	public void setUnitDuration(int unitDuration) {
-		this.unitDuration = unitDuration;
+		this.duration = unitDuration;
 	}
 
 	public int getDivisionID() {
@@ -133,11 +133,11 @@ public class UnitDetail implements Common {
     }
 
     public int[] getUnitCrewIDs() {
-        return unitCrewIDs;
+        return crewIDs;
     }
 
     public void setUnitCrewIDs(int[] unitCrewIDs) {
-        this.unitCrewIDs = unitCrewIDs;
+        this.crewIDs = unitCrewIDs;
     }
 
     public Unit getUnitParam() {
@@ -149,19 +149,19 @@ public class UnitDetail implements Common {
 	}
 
 	public int[] getUnitModuleIDs() {
-        return unitModuleIDs;
+        return moduleIDs;
     }
 
     public void setUnitModuleIDs(int[] unitModuleIDs) {
-        this.unitModuleIDs = unitModuleIDs;
+        this.moduleIDs = unitModuleIDs;
     }
 
-    public static int[] getUnitParams() {
-		return unitParams;
+    public int[] getUnitParams() {
+		return params;
 	}
 
-	public static void setUnitParams(int[] unitParams) {
-		UnitDetail.unitParams = unitParams;
+	public void setUnitParams(int[] params) {
+		this.params = params;
 	}
 
 	public int getX() {

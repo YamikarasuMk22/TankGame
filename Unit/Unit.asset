@@ -1,8 +1,0 @@
-
-// Unit.asset:ユニットのパラメータが定義されたcfgファイルを設定します。
-
-// TEST
-Unit = {
-	Name = "TestTank"
-	File = "TestTank.cfg"
-}

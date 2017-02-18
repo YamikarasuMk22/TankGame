@@ -1,0 +1,8 @@
+
+// LightTank.asset:ユニットのパラメータが定義されたcfgファイルを設定します。
+
+// TEST
+Unit = {
+	Name = "LightTankTest"
+	File = "LightTankTest.cfg"
+}
