@@ -3,6 +3,6 @@
 
 // TEST
 Unit = {
-	Name = "HeavyTankTest"
-	File = "HeavyTankTest.cfg"
+	Name = "TestHeavyTank"
+	File = "TestHeavyTank.cfg"
 }

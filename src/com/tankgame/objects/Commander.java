@@ -10,7 +10,7 @@ public class Commander {
     // 指揮官名
     private String name;
     // 指揮官説明文ID
-    private int descriptionID;
+    private int description;
     // 所属部隊ID
     private int divisionID;
     // 階級ID

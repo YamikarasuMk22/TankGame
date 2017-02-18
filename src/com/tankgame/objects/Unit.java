@@ -13,7 +13,7 @@ public class Unit {
     // ユニット名
     private String name;
     // ユニット説明文ID
-    private String descriptionID;
+    private String description;
 
 	/** ユニットパラメータ(絶対値) **/
     // 0:攻撃力 1:前面防御力 2:側面防御力 3:背面防御力 4:耐久力 5:機動性(移動範囲)
@@ -68,12 +68,12 @@ public class Unit {
         this.name = Name;
     }
 
-    public String getDescriptionID() {
-        return descriptionID;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptionID(String DescriptionID) {
-        this.descriptionID = DescriptionID;
+    public void setDescription(String Description) {
+        this.description = Description;
     }
 
 	public int[] getBaseParams() {
