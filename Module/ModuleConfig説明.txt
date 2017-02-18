@@ -1,0 +1,42 @@
+// モジュールのパラメータを定義します。
+//
+// Name: Moduleオブジェクト.モジュール名
+//
+// Type: Moduleオブジェクト.モジュールタイプ
+//
+//	Barrel:				砲身					int:0
+//	FrontArmor:			前面装甲				int:1
+//	SideArmor:			側面装甲				int:2
+//	BackArmor:			背面装甲				int:3
+//	Engine:				エンジン				int:4
+//	Track:				履帯					int:5
+//
+// Description: Moduleオブジェクト.モジュール説明文
+//
+// AttackPoint: Moduleオブジェクト.絶対攻撃力(基本値)
+//
+// FrontArmor: Moduleオブジェクト.絶対前面防御力(基本値)
+//
+// SideArmor: Moduleオブジェクト.絶対側面防御力(基本値)
+//
+// BackArmor: Moduleオブジェクト.絶対背面防御力(基本値)
+//
+// HitPoint: Moduleオブジェクト.絶対耐久力(基本値)
+//
+// MoveLenght: Moduleオブジェクト.機動性(移動範囲)
+
+Module
+{
+	Name = "ModuleName"
+	Type = "ModuleType"
+	Description = "ModuleDescription"
+
+	//必要ないパラメータは省略できます(省略の場合、初期値は0となる)
+	//走行性のパラメータ等追加予定
+	Attack = 200
+	FrontArmor = 100
+	SideArmor = 70
+	BackArmor = 50
+	HitPoint = 1000
+	MoveLenght = 3
+}

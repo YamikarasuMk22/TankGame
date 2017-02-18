@@ -25,6 +25,8 @@ public class UnitDetail implements Common {
     // 練度
     private int duration;
 
+    //TODO 行動不能フラグ
+
     // 装備IDリスト
     // 0:砲身ID 1:前面装甲ID 2:側面装甲ID 3:背面装甲ID 4:エンジンID 5:履帯ID
     private int[] moduleIDs;
