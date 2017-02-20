@@ -1,5 +1,7 @@
 package com.tankgame.objects;
 
+import java.util.HashMap;
+
 public class Module {
 
 	// モジュールID
@@ -13,7 +15,9 @@ public class Module {
 
 	// TODO 修理時間・破損フラグ(修理可/不可)
 
-	/** 装備品パラメータ(絶対値) **/
-	// 0:攻撃力 1:前面防御力 2:側面防御力 3:背面防御力 4:耐久力 5:機動性(移動範囲)
-	private int[] baseParams;
+	/** ユニットパラメータ(絶対値) **/
+	// Attack:攻撃力 FrontArmor:前面防御力 SideArmor:側面防御力 BackArmor:背面防御力 HitPoint:耐久力
+	// AttackRange:射程範囲 MoveRange:移動範囲 ViewRange:視認範囲 StealthRange:視認性 SignalRange:通信範囲
+	// CriticalRate:クリティカル率 AvoidRate:回避率 ShotPerAttack:砲撃回数/ターン
+	private HashMap<String, Integer> baseParams;
 }

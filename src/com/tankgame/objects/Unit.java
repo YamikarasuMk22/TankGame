@@ -16,13 +16,10 @@ public class Unit {
 	// ユニット説明文ID
 	private String description;
 
-	// TODO 走行性・視認距離・視認性・通信範囲・口径・射程距離・重量・クリティカル率・跳弾率・砲撃回数/ターン
-	// TODO パラメータはKey,Valueで管理する？
-
 	/** ユニットパラメータ(絶対値) **/
 	// Attack:攻撃力 FrontArmor:前面防御力 SideArmor:側面防御力 BackArmor:背面防御力 HitPoint:耐久力
 	// AttackRange:射程範囲 MoveRange:移動範囲 ViewRange:視認範囲 StealthRange:視認性 SignalRange:通信範囲
-	// CriticalRate:クリティカル率 AvoidRate:回避率 AttackPerTurn:砲撃回数/ターン
+	// CriticalRate:クリティカル率 AvoidRate:回避率 ShotPerAttack:砲撃回数/ターン
 	private HashMap<String, Integer> baseParams;
 
 	/** UI情報 **/

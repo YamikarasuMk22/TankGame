@@ -11,7 +11,7 @@ import com.tankgame.util.ImageUtil;
 public class UnitDetail implements Common {
 
 	/** ユニット基本情報 **/
-	/** TODO cfg → unitObjオブジェクトにロード → 描画時はUnitオブジェクトに呼び出し？ **/
+	/** TODO cfg → Unitオブジェクトにロード → 描画時はUnitDetailオブジェクトに呼び出し？ **/
 	// 描画ユニットID
 	private int drawID;
 	// ユニットID
