@@ -1,4 +1,4 @@
-package com.tankgame.objects;
+package com.tankgame.object;
 
 import java.util.HashMap;
 

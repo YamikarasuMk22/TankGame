@@ -8,7 +8,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import com.tankgame.common.Common;
-import com.tankgame.objects.UnitDetail;
+import com.tankgame.object.UnitDetail;
 
 public class ImageUtil implements Common {
 

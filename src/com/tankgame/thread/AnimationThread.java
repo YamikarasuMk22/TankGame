@@ -1,6 +1,6 @@
 package com.tankgame.thread;
 
-import com.tankgame.objects.UnitDetail;
+import com.tankgame.object.UnitDetail;
 
 public class AnimationThread extends Thread {
 
