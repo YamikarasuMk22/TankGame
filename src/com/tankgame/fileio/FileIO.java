@@ -25,7 +25,7 @@ import com.tankgame.object.Unit;
 public class FileIO implements Common {
 	/**
 	 * assetファイルに定義された属性の読み込みを行う<br>
-	 * File="cfgファイルパス"<br>
+	 * File="assetファイルパス"<br>
 	 * の記述をHashMap(cfgファイル名, cfgファイルオブジェクト)にして返す
 	 *
 	 * @param asset 読み込むassetファイル
@@ -62,6 +62,52 @@ public class FileIO implements Common {
 		return assetAttr;
 	}
 
+	/**
+	 * configファイルに定義された属性の読み込みを行う<br>
+	 * File="cfgファイルパス"<br>
+	 * の記述をHashMap(cfgファイル名, cfgファイルオブジェクト)にして返す
+	 *
+	 * @param config 読み込むconfigファイル
+	 * @return Key:属性名 Value:属性値
+	 */
+	public HashMap<String, File> getConfigAttr(File config) {
+
+		HashMap<String, File> configAttr = new HashMap<String, File>();
+
+		//「属性名="属性値"」の正規表現
+		String AttrRegex = "(^[0-9a-zA-Z]+$) *= *\"(^[0-9a-zA-Z]+$)\"";
+
+		try {
+			String strReadText = "";
+			BufferedReader read = new BufferedReader(new InputStreamReader(new FileInputStream(config), "UTF-8"));
+
+			while ((strReadText = read.readLine()) != null) {
+				Pattern p = Pattern.compile(AttrRegex);
+				Matcher m = p.matcher(strReadText);
+
+				if (m.find()) {
+					File cfgFile = new File(m.group(1));
+
+					configAttr.put(cfgFile.getName(), cfgFile);
+				}
+			}
+			read.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return configAttr;
+	}
+
+	/**
+	 * オブジェクトの型を判断してgetAssetAttrを実行
+	 *
+	 * @param obj paramが設定されているいずれかのオブジェクト
+	 * @return Key:属性名 Value:属性値
+	 */
 	public HashMap<String, File> getAssetAttrByObj(Object obj) {
 		if (obj instanceof Unit)
 			return getAssetAttr(new File(UNIT_ASSET));
