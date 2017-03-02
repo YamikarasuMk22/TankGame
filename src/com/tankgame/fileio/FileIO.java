@@ -29,14 +29,14 @@ public class FileIO implements Common {
 	 * の記述をHashMap(cfgファイル名, cfgファイルオブジェクト)にして返す
 	 *
 	 * @param asset 読み込むassetファイル
-	 * @return Key:ファイル名 Value:ファイルオブジェクト
+	 * @return HashMap(Key, Value) Key:ファイル名 Value:ファイルオブジェクト
 	 */
 	public HashMap<String, File> getAssetAttr(File asset) {
 
 		HashMap<String, File> assetAttr = new HashMap<String, File>();
 
 		//「属性名="属性値"」の正規表現
-		String AttrRegex = "(FILE|File|file) *= *\"(^[0-9a-zA-Z]+$)\"";
+		String AttrRegex = "(File) *= *\"(^[0-9a-zA-Z]+$)\"";
 
 		try {
 			String strReadText = "";
@@ -68,11 +68,11 @@ public class FileIO implements Common {
 	 * の記述をHashMap(cfgファイル名, cfgファイルオブジェクト)にして返す
 	 *
 	 * @param config 読み込むconfigファイル
-	 * @return Key:属性名 Value:属性値
+	 * @return HashMap(Key, Value) Key:属性名 Value:属性値
 	 */
-	public HashMap<String, File> getConfigAttr(File config) {
+	public HashMap<String, String> getConfigAttr(File config) {
 
-		HashMap<String, File> configAttr = new HashMap<String, File>();
+		HashMap<String, String> configAttr = new HashMap<String, String>();
 
 		//「属性名="属性値"」の正規表現
 		String AttrRegex = "(^[0-9a-zA-Z]+$) *= *\"(^[0-9a-zA-Z]+$)\"";
@@ -86,9 +86,7 @@ public class FileIO implements Common {
 				Matcher m = p.matcher(strReadText);
 
 				if (m.find()) {
-					File cfgFile = new File(m.group(1));
-
-					configAttr.put(cfgFile.getName(), cfgFile);
+					configAttr.put(m.group(1), m.group(2));
 				}
 			}
 			read.close();

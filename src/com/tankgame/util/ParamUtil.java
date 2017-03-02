@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.tankgame.common.CommonParams;
 import com.tankgame.object.UnitDetail;
 
-public class ParamUtil extends CommonParams {
+public class ParamUtil implements CommonParams {
 
 	public HashMap<String, Integer> calculateParams(UnitDetail unit) {
 

@@ -13,7 +13,7 @@
 //
 //	LightTank:			軽戦車					int:0
 //	MediumTank:			中戦車					int:1
-//	HeavyTank:			重戦車					int:3
+//	HeavyTank:			重戦車					int:2
 //
 // Description: Unitオブジェクト.ユニット説明文
 //
